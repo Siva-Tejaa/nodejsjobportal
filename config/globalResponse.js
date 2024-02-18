@@ -11,5 +11,5 @@ module.exports.customErrorResponse = {
   error: {},
   message: "",
   status: 404,
-  statusTest: "Not Found",
+  statusText: "Not Found",
 };

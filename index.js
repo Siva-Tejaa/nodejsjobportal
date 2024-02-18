@@ -9,6 +9,8 @@ const testRouter = require("./routers/testRouter");
 
 const userRouter = require("./routers/userRouter");
 
+const homeRouter = require("./routers/homeRouter");
+
 const connectDB = require("./config/dbConfig");
 
 //cors for frontend access
@@ -16,6 +18,8 @@ app.use(cors());
 
 //Middlewares
 app.use(express.json());
+
+app.use("/", homeRouter);
 
 app.use("/", authRouter);
 
