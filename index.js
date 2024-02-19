@@ -11,6 +11,8 @@ const userRouter = require("./routers/userRouter");
 
 const homeRouter = require("./routers/homeRouter");
 
+const notFoundRouter = require("./routers/notFoundRouter");
+
 const connectDB = require("./config/dbConfig");
 
 //cors for frontend access
@@ -26,6 +28,8 @@ app.use("/", authRouter);
 app.use("/", testRouter);
 
 app.use("/", userRouter);
+
+app.use("*", notFoundRouter);
 
 const port = 8080;
 app.listen(port, async () => {

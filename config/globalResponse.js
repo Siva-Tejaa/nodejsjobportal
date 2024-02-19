@@ -10,6 +10,6 @@ module.exports.customErrorResponse = {
   success: false,
   error: {},
   message: "",
-  status: 404,
-  statusText: "Not Found",
+  status: 500,
+  statusText: "Internal Server Error",
 };
