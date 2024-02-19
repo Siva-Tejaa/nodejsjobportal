@@ -8,7 +8,7 @@ const { registerMiddleware } = require("../middlewares/registerMiddleware");
 const router = require("express").Router();
 
 //GET Users || GET
-router.get("/users", userController);
+router.get("/users", userController); //NOT IMPLEMENTED
 
 //Update Users || PUT
 router.put(

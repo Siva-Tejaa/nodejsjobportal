@@ -11,6 +11,8 @@ const userRouter = require("./routers/userRouter");
 
 const homeRouter = require("./routers/homeRouter");
 
+const jobsRouter = require("./routers/jobsRoute");
+
 const notFoundRouter = require("./routers/notFoundRouter");
 
 const connectDB = require("./config/dbConfig");
@@ -28,6 +30,8 @@ app.use("/", authRouter);
 app.use("/", testRouter);
 
 app.use("/", userRouter);
+
+app.use("/", jobsRouter);
 
 app.use("*", notFoundRouter);
 
