@@ -32,7 +32,7 @@ module.exports.createJobController = async (req, res) => {
 //GET JOBS Controller
 module.exports.getAllJobsController = async (req, res) => {
   try {
-    const jobs = await jobsModel.find({ createdBy: req.user.userId });
+    const jobs = await jobsModel.find();
 
     //customSuccessResponse
     customSuccessResponse.data = jobs;
