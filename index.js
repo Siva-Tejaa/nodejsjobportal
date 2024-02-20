@@ -38,5 +38,5 @@ app.use("*", notFoundRouter);
 const port = 8080;
 app.listen(port, async () => {
   await connectDB();
-  console.log(`Server is Running on Port ${port}`);
+  console.log(`Server is Running on Port ${port}...`);
 });
