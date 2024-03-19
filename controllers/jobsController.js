@@ -39,7 +39,7 @@ module.exports.getAllJobsController = async (req, res) => {
     const { status, workType, search, sort } = req.query;
     //Conditions for searching
     const queryObject = {
-      createdBy: req.user.userId,
+      // createdBy: req.user.userId,
     };
 
     //Filters Logic

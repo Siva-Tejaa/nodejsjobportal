@@ -19,7 +19,7 @@ router.post(
 );
 
 //GET ALL JOBS || GET
-router.get("/all-jobs", userAuthentication, getAllJobsController);
+router.get("/all-jobs", getAllJobsController);
 
 //UPDATE JOB || PUT || PATCH
 router.put(

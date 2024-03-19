@@ -20,6 +20,12 @@ module.exports.registerController = async (req, res) => {
     //Writing To Database
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
+      // customErrorResponse.error = error;
+      customErrorResponse.message = "Email Already Registered";
+      customErrorResponse.status = 409;
+      customErrorResponse.statusText = "Bad Request";
+
+      return res.status(409).send(customErrorResponse);
       return res.send("Email Already Registered");
     }
 
