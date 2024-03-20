@@ -77,7 +77,7 @@ module.exports.loginController = async (req, res) => {
     user.password = undefined;
 
     res.send({
-      success: "true",
+      success: true,
       message: "User Logged In Successfully",
       user,
       jwtToken,
