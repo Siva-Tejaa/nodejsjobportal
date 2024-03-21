@@ -59,14 +59,24 @@ module.exports.loginController = async (req, res) => {
     //Find User by mail in DB
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.send("User Email ID Not Found");
+      // return res.send("User Email ID Not Found");
+      customErrorResponse.message = "User Email ID Not Found";
+      customErrorResponse.status = 403;
+      customErrorResponse.statusText = "Forbidden";
+
+      return res.status(403).send(customErrorResponse);
     }
 
     // Compare UserPassword & Encrypted Password from DB
     const passwordComparision = await bcrypt.compare(password, user.password);
 
     if (!passwordComparision) {
-      return res.send("Password is not Matching");
+      // return res.send("Password is not Matching");
+      customErrorResponse.message = "Password is not Matching";
+      customErrorResponse.status = 403;
+      customErrorResponse.statusText = "Forbidden";
+
+      return res.status(403).send(customErrorResponse);
     }
 
     //JSON WEB TOKEN CREATION

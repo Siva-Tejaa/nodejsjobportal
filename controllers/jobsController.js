@@ -31,7 +31,7 @@ module.exports.createJobController = async (req, res) => {
   }
 };
 
-//GET JOBS Controller
+//GET ALL JOBS Controller
 module.exports.getAllJobsController = async (req, res) => {
   try {
     // const jobs = await jobsModel.find({ createdBy: req.user.userId });
@@ -76,20 +76,20 @@ module.exports.getAllJobsController = async (req, res) => {
 
     //Pagination
 
-    const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 10;
-    const skip = (page - 1) * limit;
+    // const page = Number(req.query.page) || 1;
+    // const limit = Number(req.query.limit) || 10;
+    // const skip = (page - 1) * limit;
 
-    queryResult = queryResult.skip(skip).limit(limit);
+    // queryResult = queryResult.skip(skip).limit(limit);
 
     //Jobs Count
     const totalJobs = await jobsModel.countDocuments(queryResult);
-    const numOfPage = Math.ceil(totalJobs / limit);
+    // const numOfPage = Math.ceil(totalJobs / limit);
 
     const job = await queryResult;
 
     //customSuccessResponse
-    customSuccessResponse.data = { totalJobs, job, numOfPage };
+    customSuccessResponse.data = { totalJobs, job };
     customSuccessResponse.totalJobs = job.length;
     customSuccessResponse.message = "All Jobs fetched Successfully";
     customSuccessResponse.status = 200;
@@ -105,6 +105,41 @@ module.exports.getAllJobsController = async (req, res) => {
 
     return res.status(500).send(customErrorResponse);
   }
+};
+
+//GET USER JOBS Controller
+module.exports.getUserJobsController = async (req, res) => {
+  try {
+    const queryObject = {
+      createdBy: req.user.userId,
+    };
+
+    let queryResult = jobsModel.find(queryObject);
+
+    const totalJobs = await jobsModel.countDocuments(queryResult);
+    // const numOfPage = Math.ceil(totalJobs / limit);
+
+    const job = await queryResult;
+
+    //customSuccessResponse
+    customSuccessResponse.data = { totalJobs, job };
+    customSuccessResponse.totalJobs = job.length;
+    customSuccessResponse.message = "User Jobs fetched Successfully";
+    customSuccessResponse.status = 200;
+    customSuccessResponse.statusText = "OK";
+
+    return res.status(201).send(customSuccessResponse);
+  } catch (error) {
+    //customErrorResponse
+    customErrorResponse.error = error;
+    customErrorResponse.message = "Something Went Wrong";
+    customErrorResponse.status = 500;
+    customErrorResponse.statusText = "Internal Server Error";
+
+    return res.status(500).send(customErrorResponse);
+  }
+  console.log(req.user.userId);
+  res.send("Success");
 };
 
 //UPDATE JOB Controller

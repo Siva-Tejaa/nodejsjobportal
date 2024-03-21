@@ -1,6 +1,7 @@
 const {
   createJobController,
   getAllJobsController,
+  getUserJobsController,
   updateJobController,
   deleteJobController,
   jobStatsController,
@@ -20,6 +21,9 @@ router.post(
 
 //GET ALL JOBS || GET
 router.get("/all-jobs", getAllJobsController);
+
+//GET ALL JOBS || GET
+router.get("/user-jobs", userAuthentication, getUserJobsController);
 
 //UPDATE JOB || PUT || PATCH
 router.put(
